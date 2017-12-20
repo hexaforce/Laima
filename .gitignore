@@ -1,6 +1,8 @@
 # IDE file
+target
 .project
 .settings
+.classpath
 
 # Compiled class file
 *.class
