@@ -1,4 +1,4 @@
-package io.hexaforce.laima;
+package io.hexaforce.flyway;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

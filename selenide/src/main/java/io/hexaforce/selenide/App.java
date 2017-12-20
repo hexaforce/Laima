@@ -1,4 +1,4 @@
-package io.hexaforce.laima;
+package io.hexaforce.selenide;
 
 /**
  * Hello world!
