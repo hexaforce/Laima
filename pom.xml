@@ -21,6 +21,7 @@
 	<modules>
 		<module>flyway</module>
 		<module>selenide</module>
+		<module>allure</module>
 	</modules>
 	
 	<dependencies>
@@ -31,5 +32,34 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<additionalJOption>-J-Xss2048m</additionalJOption>
+					<bootclasspath>${sun.boot.class.path}</bootclasspath>
+ 					<useStandardDocletOptions>false</useStandardDocletOptions>
+					<doclet>com.google.doclava.Doclava</doclet>
+					<docletArtifact>
+						<groupId>com.google.doclava</groupId>
+						<artifactId>doclava</artifactId>
+						<version>1.0.6</version>
+					</docletArtifact>
+					<docencoding>UTF-8</docencoding>
+					<charset>UTF-8</charset>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
