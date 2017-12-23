@@ -9,19 +9,19 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitPlatform.class)
 class DisplayNameDemo {
 
-    @Test
-    @DisplayName("Custom test name containing spaces")
-    void testWithDisplayNameContainingSpaces() {
-    }
+	@Test
+	@DisplayName("Custom test name containing spaces")
+	void testWithDisplayNameContainingSpaces() {
+	}
 
-    @Test
-    @DisplayName("╯°□°）╯")
-    void testWithDisplayNameContainingSpecialCharacters() {
-    }
+	@Test
+	@DisplayName("╯°□°）╯")
+	void testWithDisplayNameContainingSpecialCharacters() {
+	}
 
-    @Test
-    @DisplayName("😱")
-    void testWithDisplayNameContainingEmoji() {
-    }
+	@Test
+	@DisplayName("😱")
+	void testWithDisplayNameContainingEmoji() {
+	}
 
 }

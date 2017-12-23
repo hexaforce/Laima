@@ -41,12 +41,18 @@ class StandardTests {
 	@BeforeAll
 	static void initAll() {
 
-		// System.setProperty("webdriver.chrome.driver", "/absolute/path/to/binary/chromedriver");
-		// System.setProperty("webdriver.gecko.driver", "/absolute/path/to/binary/geckodriver");
-		// System.setProperty("webdriver.opera.driver", "/absolute/path/to/binary/operadriver");
-		// System.setProperty("phantomjs.binary.path", "/absolute/path/to/binary/phantomjs");
-		// System.setProperty("webdriver.edge.driver", "C:/absolute/path/to/binary/MicrosoftWebDriver.exe");
-		// System.setProperty("webdriver.ie.driver", "C:/absolute/path/to/binary/IEDriverServer.exe");
+		// System.setProperty("webdriver.chrome.driver",
+		// "/absolute/path/to/binary/chromedriver");
+		// System.setProperty("webdriver.gecko.driver",
+		// "/absolute/path/to/binary/geckodriver");
+		// System.setProperty("webdriver.opera.driver",
+		// "/absolute/path/to/binary/operadriver");
+		// System.setProperty("phantomjs.binary.path",
+		// "/absolute/path/to/binary/phantomjs");
+		// System.setProperty("webdriver.edge.driver",
+		// "C:/absolute/path/to/binary/MicrosoftWebDriver.exe");
+		// System.setProperty("webdriver.ie.driver",
+		// "C:/absolute/path/to/binary/IEDriverServer.exe");
 
 		ChromeDriverManager.getInstance().setup();
 		// FirefoxDriverManager.getInstance().setup();
@@ -54,7 +60,7 @@ class StandardTests {
 		// InternetExplorerDriverManager.getInstance().setup();
 		// OperaDriverManager.getInstance().setup();
 		// PhantomJsDriverManager.getInstance().setup();
-		
+
 	}
 
 	@BeforeEach
@@ -67,27 +73,29 @@ class StandardTests {
 		// driver = new InternetExplorerDriver();
 
 	}
-    @Step
-    public void checkThat2is2() {
-        assertThat(2, is(2));
-    }
 
-    @Test
-    public void simpleTestWithSteps() throws Exception {
-        checkThat2is2();
-    }
 	@Step
-    public void firstStep() {
+	public void checkThat2is2() {
+		assertThat(2, is(2));
+	}
 
-    }
-    
 	@Test
-    @Feature("Some feature")
-    //@Severity(SeverityLevel.CRITICAL)
-    public void testOutput() {
-        firstStep();
-    }
-    
+	public void simpleTestWithSteps() throws Exception {
+		checkThat2is2();
+	}
+
+	@Step
+	public void firstStep() {
+
+	}
+
+	@Test
+	@Feature("Some feature")
+	// @Severity(SeverityLevel.CRITICAL)
+	public void testOutput() {
+		firstStep();
+	}
+
 	@Test
 	void succeedingTest() {
 
