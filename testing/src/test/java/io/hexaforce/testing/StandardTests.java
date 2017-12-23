@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+// http://junit.org/junit5/docs/current/user-guide/#overview
+// http://junit.org/junit5/docs/current/api/overview-summary.html
 class StandardTests {
 
     @BeforeAll
