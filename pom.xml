@@ -10,26 +10,35 @@
 
 	<name>Laima</name>
 	<url>http://maven.apache.org</url>
-
+	<description>a</description>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<junit.api.version>5.1.0-M1</junit.api.version>
 	</properties>
 	
 	<modules>
 		<module>generation</module>
 		<module>migration</module>
 		<module>testing</module>
+		<module>deploy</module>
 	</modules>
 	
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.api.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.api.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

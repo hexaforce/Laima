@@ -1,4 +1,4 @@
-package io.hexaforce.testing;
+package io.hexaforce.deploy;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
