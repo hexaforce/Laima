@@ -11,7 +11,7 @@
 	<name>Laima</name>
 	<url>http://maven.apache.org</url>
 	<description>a</description>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -19,15 +19,16 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<junit.api.version>5.1.0-M1</junit.api.version>
+		<junit.platform.version>1.1.0-M1</junit.platform.version>
 	</properties>
-	
+
 	<modules>
 		<module>generation</module>
 		<module>migration</module>
 		<module>testing</module>
 		<module>deploy</module>
 	</modules>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -41,13 +42,20 @@
 			<version>${junit.api.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>${junit.platform.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
 				<configuration>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
@@ -56,10 +64,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.0</version>
 				<configuration>
 					<additionalJOption>-J-Xss2048m</additionalJOption>
 					<bootclasspath>${sun.boot.class.path}</bootclasspath>
- 					<useStandardDocletOptions>false</useStandardDocletOptions>
+					<useStandardDocletOptions>false</useStandardDocletOptions>
 					<doclet>com.google.doclava.Doclava</doclet>
 					<docletArtifact>
 						<groupId>com.google.doclava</groupId>
