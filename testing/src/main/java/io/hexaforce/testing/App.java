@@ -1,4 +1,4 @@
-package io.hexaforce.integration;
+package io.hexaforce.testing;
 
 /**
  * Hello world!
