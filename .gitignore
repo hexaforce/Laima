@@ -13,6 +13,9 @@ target
 # BlueJ files
 *.ctxt
 
+# Allure files
+.allure
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
