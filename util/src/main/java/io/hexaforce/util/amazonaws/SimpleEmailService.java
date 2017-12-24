@@ -55,10 +55,10 @@ public class SimpleEmailService {
 	 * @param value
 	 */
 	public static EmailObject sendEmail(EmailObject value) {
-		return sendEmails(Arrays.asList(value)).get(0);
+		return sendEmail(Arrays.asList(value)).get(0);
 	}
 
-	public static List<EmailObject> sendEmails(List<EmailObject> values) {
+	public static List<EmailObject> sendEmail(List<EmailObject> values) {
 
 		AmazonSimpleEmailService client = buildClient();
 

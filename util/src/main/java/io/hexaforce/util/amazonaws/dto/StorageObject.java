@@ -11,12 +11,12 @@ public class StorageObject {
 	
 	private String bucketName;
 	private String key;
-	
-	private InputStream responseContents;
-	
+
 	private File requestByFile;
 	private StringBuffer requestByBuffer;
 	private InputStream requestByStream;
+	
+	private InputStream responseContents;
 	
 	private Date lastModified;
 	private String versionId;

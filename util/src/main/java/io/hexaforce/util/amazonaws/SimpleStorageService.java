@@ -1,5 +1,7 @@
 package io.hexaforce.util.amazonaws;
 
+import static java.lang.System.out;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +25,6 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 import io.hexaforce.util.amazonaws.dto.StorageObject;
-import static java.lang.System.out;
 
 /**
  * @author T.Tantaka
@@ -58,10 +59,10 @@ public class SimpleStorageService {
 	 * @return Bucket
 	 */
 	public static Bucket createBucket(String bucketName) {
-		return createBuckets(Arrays.asList(bucketName)).get(0);
+		return createBucket(Arrays.asList(bucketName)).get(0);
 	}
 
-	public static List<Bucket> createBuckets(List<String> bucketNames) {
+	public static List<Bucket> createBucket(List<String> bucketNames) {
 		AmazonS3 s3 = buildClient();
 		List<Bucket> bucketList = new ArrayList<>();
 		for (String bucketName : bucketNames) {
@@ -78,10 +79,10 @@ public class SimpleStorageService {
 	 * @param bucketName
 	 */
 	public static void deleteBucket(String bucketName) {
-		deleteBuckets(Arrays.asList(bucketName));
+		deleteBucket(Arrays.asList(bucketName));
 	}
 
-	public static void deleteBuckets(List<String> bucketNames) {
+	public static void deleteBucket(List<String> bucketNames) {
 		AmazonS3 s3 = buildClient();
 		for (String bucketName : bucketNames) {
 			try {
@@ -95,7 +96,7 @@ public class SimpleStorageService {
 	/**
 	 * @return
 	 */
-	public static List<Bucket> listBuckets() {
+	public static List<Bucket> listBucket() {
 		AmazonS3 s3 = buildClient();
 		return s3.listBuckets();
 	}
@@ -104,7 +105,7 @@ public class SimpleStorageService {
 	 * @param bucketName
 	 * @param prefix
 	 */
-	public static List<StorageObject> listObjects(String bucketName, String prefix) {
+	public static List<StorageObject> listObject(String bucketName, String prefix) {
 		AmazonS3 s3 = buildClient();
 		ListObjectsRequest serchRequest = new ListObjectsRequest().withBucketName(bucketName).withPrefix(prefix);
 		List<StorageObject> result = new ArrayList<>();
@@ -121,10 +122,10 @@ public class SimpleStorageService {
 	 * @param value
 	 */
 	public static StorageObject putObject(StorageObject value) {
-		return putObjects(Arrays.asList(value)).get(0);
+		return putObject(Arrays.asList(value)).get(0);
 	}
 
-	public static List<StorageObject> putObjects(List<StorageObject> values) {
+	public static List<StorageObject> putObject(List<StorageObject> values) {
 		AmazonS3 s3 = buildClient();
 
 		for (StorageObject v : values) {
@@ -156,10 +157,10 @@ public class SimpleStorageService {
 	 * @return
 	 */
 	public static StorageObject getObject(StorageObject value) {
-		return getObjects(Arrays.asList(value)).get(0);
+		return getObject(Arrays.asList(value)).get(0);
 	}
 
-	public static List<StorageObject> getObjects(List<StorageObject> values) {
+	public static List<StorageObject> getObject(List<StorageObject> values) {
 		AmazonS3 s3 = buildClient();
 		for (StorageObject v : values) {
 			try {
@@ -175,10 +176,10 @@ public class SimpleStorageService {
 	 * @param value
 	 */
 	public static void deleteObject(StorageObject value) {
-		deleteObjects(Arrays.asList(value));
+		deleteObject(Arrays.asList(value));
 	}
 
-	public static void deleteObjects(List<StorageObject> values) {
+	public static void deleteObject(List<StorageObject> values) {
 		AmazonS3 s3 = buildClient();
 		for (StorageObject v : values) {
 			try {
