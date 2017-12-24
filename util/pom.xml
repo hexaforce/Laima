@@ -27,6 +27,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-cloudwatch</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-logs</artifactId>
 		</dependency>
 		<dependency>
