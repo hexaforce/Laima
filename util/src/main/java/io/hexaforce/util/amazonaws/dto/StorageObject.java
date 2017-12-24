@@ -2,16 +2,23 @@ package io.hexaforce.util.amazonaws.dto;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.Date;
 
 import lombok.Data;
 
 @Data
-public class S3ObjectValue {
+public class StorageObject {
+	
 	private String bucketName;
 	private String key;
+	
 	private InputStream responseContents;
-	// 以下はPUT時にどれか必須
+	
 	private File requestByFile;
 	private StringBuffer requestByBuffer;
 	private InputStream requestByStream;
+	
+	private Date lastModified;
+	private String versionId;
+	
 }

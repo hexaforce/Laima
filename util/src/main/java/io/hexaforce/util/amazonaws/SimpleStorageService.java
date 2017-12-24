@@ -22,7 +22,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
-import io.hexaforce.util.amazonaws.dto.S3ObjectValue;
+import io.hexaforce.util.amazonaws.dto.StorageObject;
 import static java.lang.System.out;
 
 /**
@@ -42,7 +42,7 @@ public class SimpleStorageService {
 		try {
 			AWSCredentials credentials = new ProfileCredentialsProvider("S3").getCredentials();
 			AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-					.withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(Regions.US_WEST_2)
+					.withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(Regions.AP_NORTHEAST_1)
 					.build();
 			return s3;
 		} catch (Exception e) {
@@ -104,12 +104,12 @@ public class SimpleStorageService {
 	 * @param bucketName
 	 * @param prefix
 	 */
-	public static List<S3ObjectValue> listObjects(String bucketName, String prefix) {
+	public static List<StorageObject> listObjects(String bucketName, String prefix) {
 		AmazonS3 s3 = buildClient();
 		ListObjectsRequest serchRequest = new ListObjectsRequest().withBucketName(bucketName).withPrefix(prefix);
-		List<S3ObjectValue> result = new ArrayList<>();
+		List<StorageObject> result = new ArrayList<>();
 		for (S3ObjectSummary summary : s3.listObjects(serchRequest).getObjectSummaries()) {
-			S3ObjectValue o = new S3ObjectValue();
+			StorageObject o = new StorageObject();
 			o.setBucketName(summary.getBucketName());
 			o.setKey(summary.getKey());
 			result.add(o);
@@ -120,13 +120,14 @@ public class SimpleStorageService {
 	/**
 	 * @param value
 	 */
-	public static S3ObjectValue putObject(S3ObjectValue value) {
+	public static StorageObject putObject(StorageObject value) {
 		return putObjects(Arrays.asList(value)).get(0);
 	}
 
-	public static List<S3ObjectValue> putObjects(List<S3ObjectValue> values) {
+	public static List<StorageObject> putObjects(List<StorageObject> values) {
 		AmazonS3 s3 = buildClient();
-		for (S3ObjectValue v : values) {
+
+		for (StorageObject v : values) {
 			try {
 				PutObjectResult s = null;
 				if (v.getRequestByStream() != null) {
@@ -136,13 +137,17 @@ public class SimpleStorageService {
 				} else if (v.getRequestByBuffer() != null) {
 					s = s3.putObject(v.getBucketName(), v.getKey(), v.getRequestByBuffer().toString());
 				}
-				if (s == null) {
-					values.remove(v);
+
+				if (s != null) {
+					v.setLastModified(s.getMetadata().getLastModified());
+					v.setVersionId(s.getMetadata().getVersionId());
 				}
+
 			} catch (Exception e) {
 				displayException(e);
 			}
 		}
+
 		return values;
 	}
 
@@ -150,13 +155,13 @@ public class SimpleStorageService {
 	 * @param value
 	 * @return
 	 */
-	public static S3ObjectValue getObject(S3ObjectValue value) {
+	public static StorageObject getObject(StorageObject value) {
 		return getObjects(Arrays.asList(value)).get(0);
 	}
 
-	public static List<S3ObjectValue> getObjects(List<S3ObjectValue> values) {
+	public static List<StorageObject> getObjects(List<StorageObject> values) {
 		AmazonS3 s3 = buildClient();
-		for (S3ObjectValue v : values) {
+		for (StorageObject v : values) {
 			try {
 				v.setResponseContents(s3.getObject(v.getBucketName(), v.getKey()).getObjectContent());
 			} catch (Exception e) {
@@ -169,13 +174,13 @@ public class SimpleStorageService {
 	/**
 	 * @param value
 	 */
-	public static void deleteObject(S3ObjectValue value) {
+	public static void deleteObject(StorageObject value) {
 		deleteObjects(Arrays.asList(value));
 	}
 
-	public static void deleteObjects(List<S3ObjectValue> values) {
+	public static void deleteObjects(List<StorageObject> values) {
 		AmazonS3 s3 = buildClient();
-		for (S3ObjectValue v : values) {
+		for (StorageObject v : values) {
 			try {
 				s3.deleteObject(v.getBucketName(), v.getKey());
 			} catch (Exception e) {
