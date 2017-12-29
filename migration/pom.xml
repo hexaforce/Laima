@@ -2,38 +2,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<artifactId>migration</artifactId>
-	
+
 	<parent>
 		<groupId>io.hexaforce</groupId>
 		<artifactId>Laima</artifactId>
 		<version>1.0.0.BUILD-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	
+
 	<properties>
-		<flyway.version>4.0.3</flyway.version>
-		<postgres.driver.version>9.2-1002.jdbc4</postgres.driver.version>
-		<database.url>jdbc:postgresql://localhost:5432/flywaydemo</database.url>
-		<database.user>flywaydemo</database.user>
-		<databese.password>flywaydemo</databese.password>
+		<database.url>jdbc:mysql://localhost:3306/freude</database.url>
+		<database.user>freude</database.user>
+		<databese.password>freude</databese.password>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
-				<version>${flyway.version}</version>
+				<version>5.0.3</version>
 				<configuration>
 					<sqlMigrationSeparator>__</sqlMigrationSeparator>
 					<locations>
@@ -45,13 +42,13 @@
 				</configuration>
 				<dependencies>
 					<dependency>
-						<groupId>postgresql</groupId>
-						<artifactId>postgresql</artifactId>
-						<version>${postgres.driver.version}</version>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>6.0.6</version>
 					</dependency>
 				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
